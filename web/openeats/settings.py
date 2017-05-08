@@ -4,7 +4,7 @@ import os
 
 DEBUG = False
 if os.environ.get('DEBUG', 'True').lower() == 'true':
-    DEBUG = True
+    DEBUG = False
 
 SERVE_MEDIA = True
 
@@ -16,12 +16,12 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.environ.get('DATABASE_NAME', 'openeats'),                      # Or path to database file if using sqlite3.
-        'USER': os.environ.get('DATABASE_USER', 'openeats'),                      # Not used with sqlite3.
-        'PASSWORD': os.environ.get('DATABASE_PASSWORD', 'admin'),                      # Not used with sqlite3.
-        'HOST': 'database',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.',  # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': '',  # Or path to database file if using sqlite3.
+        'USER': '',  # Not used with sqlite3.
+        'PASSWORD': '',  # Not used with sqlite3.
+        'HOST': '',  # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',  # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -33,15 +33,18 @@ DATABASES = {
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
 
-TIME_ZONE = os.environ.get('TIME_ZONE', 'Europe/Madrid')
+TIME_ZONE = os.environ.get('TIME_ZONE', 'Europe/Berlin')
+USE_TZ = True
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'de-de'
+
+USE_X_FORWARDED_HOST = True
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST', '127.0.0.1')]
+ALLOWED_HOSTS = []
 
 ugettext = lambda s: s
 
