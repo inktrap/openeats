@@ -1,6 +1,6 @@
-#openeats Project
+# OpenEats Project
 
-**openeats** is a continuation from [qgriffith/OpenEats](https://github.com/qgriffith/OpenEats) and [pando85/openeats](https://github.com/pando85/openeats).
+**OpenEats** is a continuation from [qgriffith/OpenEats](https://github.com/qgriffith/OpenEats) and [pando85/openeats](https://github.com/pando85/openeats).
 
 ## Changes
 * removed docker structure for hosting on [uberspace](https://uberspace.de)
