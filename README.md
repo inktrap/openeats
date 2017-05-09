@@ -1,66 +1,71 @@
 #openeats Project
-[![Build Status](https://travis-ci.org/pando85/openeats.svg?branch=master)](https://travis-ci.org/pando85/openeats)
 
-**openeats** is a continuation from [qgriffith/OpenEats](https://github.com/qgriffith/OpenEats).
-You can test it here: [recetas.grigri.cloud](https://recetas.grigri.cloud)
+**openeats** is a continuation from [qgriffith/OpenEats](https://github.com/qgriffith/OpenEats) and [pando85/openeats](https://github.com/pando85/openeats).
 
 ## Changes
-* Updated to Django 1.10
-* Docker-compose to deploy project
+* removed docker structure for hosting on [uberspace](https://uberspace.de)
 
-## Dev deploy
-Install and create basic data:
-```
-docker-compose up -d database && \
-docker-compose run --rm web python manage.py makemigrations && \
-docker-compose run --rm web python manage.py migrate && \
-docker-compose run --rm web python manage.py collectstatic --noinput --clear && \
-docker-compose run --rm web python manage.py createsuperuser
-```
+## Install guide
+https://blog.kuntzsch.me/setting-up-a-self-hosted-recipe-management-site-openeats/
 
-Deploy environment:
-```
-docker-compose up -d
-```
-### Tests
-Run tests:
-```
-docker-compose run --rm web python manage.py tests
+## Essential steps
+
+Make sure Virtualenv is ready
+
+``` shell
+pip2.7 install virtualenv --user
+pip2.7 install virtualenvwrapper --user
 ```
 
+Add some lines to `.bashrc`
 
-Load fixtures:
-```
-docker-compose run --rm web python manage.py loaddata openeats/accounts/fixtures/test_user_data.json
-docker-compose run --rm web python manage.py loaddata openeats/list/fixtures/list_test_data.json
-docker-compose run --rm web python manage.py loaddata openeats/list/fixtures/aisle_data.json  alex@alex-laptop
-docker-compose run --rm web python manage.py loaddata openeats/accounts/fixtures/test_friend_data.json
-docker-compose run --rm web python manage.py loaddata openeats/recipe_groups/fixtures/course_data.json
-docker-compose run --rm web python manage.py loaddata openeats/recipe_groups/fixtures/cuisine_data.json
-docker-compose run --rm web python manage.py loaddata openeats/recipe/fixtures/recipe_data.json
-docker-compose run --rm web python manage.py loaddata openeats/ingredient/fixtures/ing_data.json
+``` 
+export WORKON_HOME=~/Envs
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
+source bin/virtualenvwrapper.sh
 ```
 
-
-## Prod deploy
-Configure editing `docker-compose.prod.yml` environment variables.
-
-Install and create basic data:
-```
-docker-compose -f docker-compose.prod.yml up -d database && \
-docker-compose -f docker-compose.prod.yml run --rm web python manage.py makemigrations && \
-docker-compose -f docker-compose.prod.yml run --rm web python manage.py migrate && \
-docker-compose -f docker-compose.prod.yml run --rm web python manage.py collectstatic --noinput --clear && \
-docker-compose -f docker-compose.prod.yml run --rm web python manage.py createsuperuser
+``` shell
+source .bashrc
+mkdir -p $WORKON_HOME
 ```
 
-Deploy environment:
-```
-docker-compose -f docker-compose.prod.yml up -d
+Make virtual environment
+
+``` shell
+mkvirtualenv openeats --no-site-packages
+workon openeats
 ```
 
-## Locale
-```bash
-cd web/openeats
-django-admin makemessages --all
+Clone repository, install required packages
+
+``` shell
+git clone https://github.com/pando85/openeats.git
+pip2.7 install -r openeats/requirements.txt
 ```
+
+*(Adapt or skip this, if you want to use another database like MySQL or PorstgreSQL).*
+Create an empty sqlite3 database file and change `settings.py` accordingly.
+
+``` shell
+sqlite3 ~/openeats/openeats/openeats.db ".databases"
+```
+
+Make migrations, fill up the database with sample data, create static files and create superuser. Apply some minor fixtures
+
+``` shell
+./manage.py makemigrations
+./manage.py migrate
+./manage.py collectstatic --noinput --clear
+./manage.py createsuperuser
+
+./manage.py loaddata openeats/accounts/fixtures/test_user_data.json
+./manage.py loaddata openeats/list/fixtures/list_test_data.json
+./manage.py loaddata openeats/list/fixtures/aisle_data.json  
+./manage.py loaddata openeats/accounts/fixtures/test_friend_data.json
+./manage.py loaddata openeats/recipe_groups/fixtures/course_data.json
+./manage.py loaddata openeats/recipe_groups/fixtures/cuisine_data.json
+./manage.py loaddata openeats/recipe/fixtures/recipe_data.json
+./manage.py loaddata openeats/ingredient/fixtures/ing_data.json
+```
+
