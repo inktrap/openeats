@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-09 12:15+0200\n"
+"POT-Creation-Date: 2017-05-09 12:48+0200\n"
 "PO-Revision-Date: 2011-08-20 09:04\n"
 "Last-Translator:   <qgriffith@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -225,20 +225,20 @@ msgstr "Ihr Einkaufszettel ist entfernt worden."
 
 #: openeats/list/views.py:62 openeats/list/views.py:66
 msgid "You do not have permissions to edit this list "
-msgstr "Sie haben keine Rechte, um diese Liste bearbeiten"
+msgstr "Du bist nicht berechtigt, diese Liste zu bearbeiten"
 
 #: openeats/list/views.py:101 openeats/list/views.py:105
 msgid "You do not have permissions to view this list "
-msgstr "Sie haben keine Rechte, um diese Liste anzuzeigen"
+msgstr "Du bist nicht berechtigt, diese Liste anzuzeigen"
 
 #: openeats/list/views.py:171
 msgid "Your grocery list has been shared."
-msgstr "Ihr Einkaufszettel wurde geteilt."
+msgstr "Dein Einkaufszettel wurde geteilt."
 
 #: openeats/list/views.py:186
 #, fuzzy
 msgid "Grocery List has been un-shared"
-msgstr "Ihr Einkaufszettel wurde geteilt."
+msgstr "Dein Einkaufszettel ist privat."
 
 #: openeats/list/views.py:214
 #, fuzzy
@@ -285,7 +285,7 @@ msgstr "Foto"
 
 #: openeats/recipe/models.py:24
 msgid "course"
-msgstr "Natürlich"
+msgstr "Gang"
 
 #: openeats/recipe/models.py:25
 msgid "cuisine"
@@ -366,7 +366,7 @@ msgstr "Deutsch"
 
 #: openeats/templates/404.html:3
 msgid "we could not find what you are looking for"
-msgstr "konnten wir nicht finden, was Sie suchen"
+msgstr "Deine Suche lieferte keine Ergebnisse"
 
 #: openeats/templates/404.html:7
 msgid ""
@@ -403,7 +403,7 @@ msgstr "Top Rezept-Feed"
 
 #: openeats/templates/base.html:45 openeats/templates/sidebar/grocery.html:39
 msgid "create"
-msgstr "Neuer Einkaufszettel"
+msgstr "Erstellen"
 
 #: openeats/templates/base.html:50
 msgid "admin"
@@ -512,7 +512,7 @@ msgstr "Abbrechen"
 
 #: openeats/templates/list/grocery_ajax.html:30
 msgid "You have not added any grocery list yet!"
-msgstr "Sie haben keinen Einkaufszettel hinzugefügt!"
+msgstr "Du hast noch keinen Einkaufszettel hinzugefügt!"
 
 #: openeats/templates/list/grocery_ajax.html:31
 #: openeats/templates/list/grocery_index.html:25
@@ -538,7 +538,7 @@ msgstr "Einkaufszettel"
 
 #: openeats/templates/list/grocery_index.html:24
 msgid "You do not have any grocery list created"
-msgstr "Sie haben noch keinen Einkaufszettel erstellt"
+msgstr "Du hast noch keinen Einkaufszettel erstellt"
 
 #: openeats/templates/list/grocery_index.html:29
 msgid "shared list"
@@ -612,8 +612,7 @@ msgstr "Bearbeiten"
 
 #: openeats/templates/profiles/edit_profile.html:17
 msgid "To change your profile picture you will need to create/login to"
-msgstr ""
-"So ändern Sie Ihr Profil Bild, das Sie benötigen zum Erstellen / anmelden"
+msgstr "Um dein Profilbild zu ändern musst Du Dich anmelden"
 
 #: openeats/templates/profiles/edit_profile.html:17
 #, fuzzy
@@ -623,7 +622,7 @@ msgstr "Gravatá"
 
 #: openeats/templates/profiles/edit_profile.html:17
 msgid "using the same email address you used for this site"
-msgstr "mit der gleichen E-Mail-Adresse, die Sie für diese Website verwendet"
+msgstr "mit der gleichen E-Mail-Adresse, die Du für diese Website verwendest"
 
 #: openeats/templates/profiles/edit_profile.html:18
 msgid "Change Password"
@@ -778,7 +777,7 @@ msgstr "Küche:"
 
 #: openeats/templates/recipe/recipe_detail.html:188
 msgid "rate this:"
-msgstr "Bewerten Sie:"
+msgstr "Bewerten:"
 
 #: openeats/templates/recipe/recipe_detail.html:199
 msgid "tags:"
@@ -801,7 +800,7 @@ msgstr "Neue Rezepte"
 #: openeats/templates/recipe/recipe_form.html:56
 #, fuzzy
 msgid "recipe info"
-msgstr "Rezepte auf"
+msgstr "Rezeptdetails"
 
 #: openeats/templates/recipe/recipe_form.html:109
 #, fuzzy
@@ -811,7 +810,7 @@ msgstr "Zutaten"
 #: openeats/templates/recipe/recipe_form.html:165
 #, fuzzy
 msgid "save recipe"
-msgstr "Besuche Rezepte"
+msgstr "Rezept speichern"
 
 #: openeats/templates/recipe/recipe_list.html:8
 #, python-format
@@ -838,7 +837,7 @@ msgstr "Steps"
 
 #: openeats/templates/recipe/recipe_userfav.html:33
 msgid "You have not added any favorite recipes yet!"
-msgstr "Sie haben keine Lieblingsrezepte hat noch nicht!"
+msgstr "Du hast noch keine Lieblingsrezepte hinzugefügt!"
 
 #: openeats/templates/recipe/recipe_userlist.html:42
 msgid "has not added any recipes yet!"
@@ -942,7 +941,7 @@ msgstr "ein Kundenkonto eröffnen"
 
 #: openeats/templates/registration/logout.html:4
 msgid "You have been succesfully logged out!"
-msgstr "Sie haben sich erfolgreich abgemeldet!"
+msgstr "Du hast Dich erfolgreich abgemeldet!"
 
 #: openeats/templates/registration/password_change_done.html:4
 msgid "Password changed Succesful"
@@ -958,9 +957,7 @@ msgstr "Password Reset abgeschlossen"
 
 #: openeats/templates/registration/password_reset_complete.html:5
 msgid "Your password has been set.  You may go ahead and log in now."
-msgstr ""
-"Ihr Passwort wurde gesetzt. Sie können gehen Sie vor und melden Sie sich "
-"jetzt."
+msgstr "Dein Passwort wurde zurückgesetzt. Du kannst Dich jetzt anmelden."
 
 #: openeats/templates/registration/password_reset_complete.html:6
 msgid "Log in"
@@ -974,9 +971,7 @@ msgstr "Neues Passwort eingeben"
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
-msgstr ""
-"Bitte geben Sie Ihr neues Passwort zweimal so können wir sicherstellen, dass "
-"Sie nicht vertippt hast."
+msgstr "Bitte gib Dein Passwort zweimal ein, um Tippfehler zu vermeiden."
 
 #: openeats/templates/registration/password_reset_confirm.html:10
 msgid "New password:"
@@ -1047,8 +1042,8 @@ msgstr "Vielen Dank für Ihre Anmeldung bei"
 #, fuzzy
 msgid "you have been emailed an activation link"
 msgstr ""
-"Vielen Dank für Ihre Anmeldung bei OpenEats Sie wurden einem Aktivierungs-"
-"Link per E-Mail"
+"Vielen Dank für Deine Anmeldung im Rezepthimmel. Du erhältst einen "
+"Aktivierungs-Link per E-Mail"
 
 #: openeats/templates/relationships/confirm.html:4
 #: openeats/templates/relationships/confirm.html:7
@@ -1065,7 +1060,7 @@ msgstr "Success"
 
 #: openeats/templates/relationships/success.html:6
 msgid "You are "
-msgstr "Sie sind"
+msgstr "Du bist"
 
 #: openeats/templates/relationships/success.html:6
 msgid "now"
@@ -1136,7 +1131,7 @@ msgstr "Teilen"
 
 #: openeats/templates/sidebar/grocery.html:22
 msgid "un-share"
-msgstr "UN-Aktie"
+msgstr "Nicht mehr teilen"
 
 #: openeats/templates/sidebar/grocery.html:26
 #, fuzzy
@@ -1158,7 +1153,7 @@ msgstr "Regale verwalten"
 
 #: openeats/templates/sidebar/grocery.html:42
 msgid "browse recipes"
-msgstr "Besuche Rezepte"
+msgstr "Durchsuche Rezepte"
 
 #: openeats/templatetags/front_page.py:17
 msgid "No Front page News"
@@ -1170,7 +1165,7 @@ msgstr ""
 
 #: openeats/templatetags/recipe_links.py:16
 msgid "bookmakred"
-msgstr "bookmakred"
+msgstr "bookmarked"
 
 #: openeats/templatetags/recipe_links.py:18
 #: openeats/templatetags/recipe_links.py:21
@@ -1200,7 +1195,7 @@ msgstr "Melden"
 
 #, fuzzy
 #~ msgid "more recent recipes"
-#~ msgstr "Besuche Rezepte"
+#~ msgstr "Mehr Rezepte"
 
 #~ msgid "Cook View"
 #~ msgstr "Cook anzeigen"
@@ -1212,7 +1207,7 @@ msgstr "Melden"
 #~ msgstr "OpenEats2"
 
 #~ msgid "OpenEats Grocery List"
-#~ msgstr "OpenEats Lebensmittel-Liste"
+#~ msgstr "OpenEats Einkaufszettel"
 
 #~ msgid "OpenEats Email"
 #~ msgstr "OpenEats E-Mail"
@@ -1227,7 +1222,7 @@ msgstr "Melden"
 #~ msgstr "OpenEats - Login"
 
 #~ msgid "Go"
-#~ msgstr "Gute"
+#~ msgstr "Los"
 
 #~ msgid "View on site"
 #~ msgstr "Zurück zur Startseite"
@@ -1236,7 +1231,7 @@ msgstr "Melden"
 #~ msgstr "Schreibe %(field)s "
 
 #~ msgid "Filter"
-#~ msgstr "Artikel"
+#~ msgstr "Filter"
 
 #~ msgid "Export"
 #~ msgstr "Exportieren"
@@ -1260,7 +1255,7 @@ msgstr "Melden"
 #~ msgstr "Abbrechen"
 
 #~ msgid "You don´t have permission to edit anything."
-#~ msgstr "Sie haben keine Rechte, um diese Liste bearbeiten"
+#~ msgstr "Du bist nicht berechtigt, diese Liste zu bearbeiten"
 
 #~ msgid "My Actions"
 #~ msgstr "Aktionen"
@@ -1289,9 +1284,7 @@ msgstr "Melden"
 #~ msgid ""
 #~ "Please enter your old password, for securitys sake, and then enter your "
 #~ "new password twice so we can verify you typed it in correctly."
-#~ msgstr ""
-#~ "Bitte geben Sie Ihr neues Passwort zweimal so können wir sicherstellen, "
-#~ "dass Sie nicht vertippt hast."
+#~ msgstr "Bitte gib Dein Passwort zweimal ein, um Tippfehler zu vermeiden."
 
 #~ msgid "Old password:"
 #~ msgstr "Neues Passwort:"
