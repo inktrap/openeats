@@ -9,7 +9,6 @@
 https://blog.kuntzsch.me/setting-up-a-self-hosted-recipe-management-site-openeats/
 
 ## Essential steps
-
 Make sure Virtualenv is ready
 
 ``` shell
@@ -70,3 +69,12 @@ Make migrations, fill up the database with sample data, create static files and 
 ./manage.py loaddata openeats/ingredient/fixtures/ing_data.json
 ```
 
+## Making changes to languages and locale
+Adapt `openeats/locale/de/LC_MESSAGES/django.po`, then use
+
+``` shell
+./manage.py makemessages -l de
+./manage.py compilemessages -f
+```
+
+Restart service!
