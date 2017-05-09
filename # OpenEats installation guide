@@ -1,0 +1,102 @@
+# OpenEats installation guide
+
+# Virtualenv
+pip2.7 install virtualenv --user
+pip2.7 install virtualenvwrapper --user
+export WORKON_HOME=~/Envs
+
+# add lines to .bashrc
+export WORKON_HOME=~/Envs
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
+source bin/virtualenvwrapper.sh
+
+source .bashrc
+mkdir -p $WORKON_HOME
+
+#export WORKON_HOME=~/.virtualenvs
+#export PROJECT_HOME=/home/$USER/openeats
+#source /usr/local/bin/virtualenvwrapper.sh
+#export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
+#export WORKON_HOME=~/Envs
+#source bin/virtualenvwrapper.sh
+
+mkvirtualenv openeats --no-site-packages
+workon openeats
+
+cd
+git clone https://github.com/pando85/openeats.git
+#rm -r openeats/nginx
+#rm -r openeats/test_scripts
+#rm openeats/*
+#mv openeats openeats_tmp
+#mv openeats_tmp/web/ /home/$USER/
+#rm -r openeats_tmp/
+#mv web/ openeats/
+
+
+pip2.7 install -r openeats/requirements.txt
+
+create empty sqlite database file
+#mkdir ~/openeats_db/
+sqlite3 ~/openeats/openeats/openeats.db ".databases"
+
+nano settings.py
+
+...
+	DATABASES = {
+	    'default': {
+	        'ENGINE': 'django.db.backends.',  # Add sqlite3 after .
+	        'NAME': '/home/kuntzsch/openeats/openeats/openeats.db', # change to /home/$USER/openeats_db/openeats.db, don't use relative path $USER > username
+	        'USER': '',  # Not used with sqlite3.
+	        'PASSWORD': '',                  # Not used with sqlite3.
+	        'HOST': '',                      # Set to empty string for localhost. N$
+	        'PORT': '',                      # Set to empty string for default. Not$
+	    }
+	}
+...
+	TIME_ZONE = 'Europe/Berlin'
+	USE_TZ = True
+...
+	LANGUAGE_CODE = 'de-de'
+...
+	USE_X_FORWARDED_HOST = True
+...
+	ALLOWED_HOSTS = [
+	'openeats.username.hostname.uberspace.de'
+	] 
+...
+
+./manage.py makemigrations
+./manage.py migrate
+./manage.py collectstatic --noinput --clear
+./manage.py createsuperuser
+
+OPENEATS_URL=openeats.$USER.$(hostname)
+OPENEATS_URL=openeats.kuntzsch.me
+mkdir /var/www/virtual/$USER/$OPENEATS_URL
+cp -a openeats/static /var/www/virtual/$USER/$OPENEATS_URL/
+
+./manage.py loaddata openeats/accounts/fixtures/test_user_data.json
+./manage.py loaddata openeats/list/fixtures/list_test_data.json
+./manage.py loaddata openeats/list/fixtures/aisle_data.json  
+./manage.py loaddata openeats/accounts/fixtures/test_friend_data.json
+./manage.py loaddata openeats/recipe_groups/fixtures/course_data.json
+./manage.py loaddata openeats/recipe_groups/fixtures/cuisine_data.json
+./manage.py loaddata openeats/recipe/fixtures/recipe_data.json
+./manage.py loaddata openeats/ingredient/fixtures/ing_data.json
+
+OPENEATSPORT=$(( $RANDOM % 4535 + 61000)); netstat -tulpen | grep $OPENEATSPORT && echo "versuch's nochmal"
+
+cat <<__EOF__> /var/www/virtual/$USER/$OPENEATS_URL/.htaccess
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteBase /
+RewriteRule ^(.*)$ http://127.0.0.1:$OPENEATSPORT/\$1 [P]
+ 
+RequestHeader set X-Forwarded-Proto https env=HTTPS
+__EOF__
+
+#test server
+gunicorn --error-logfile - --reload --chdir /home/$USER/openeats --bind 127.0.0.1:$OPENEATSPORT openeats.wsgi:application
+
+ /home/$USER/Envs/openeats/bin/gunicorn --error-logfile - --reload --chdir /home/$USER/openeats --bind 127.0.0.1:$OPENEATSPORT openeats.wsgi:application --daemon
