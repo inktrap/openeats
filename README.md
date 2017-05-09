@@ -44,7 +44,7 @@ git clone https://github.com/pando85/openeats.git
 pip2.7 install -r openeats/requirements.txt
 ```
 
-*(Adapt or skip this, if you want to use another database like MySQL or PorstgreSQL).*
+*(Adapt or skip this, if you want to use another database like MySQL or PostgreSQL).*
 
 Create an empty sqlite3 database file and change `settings.py` accordingly.
 
