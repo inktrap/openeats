@@ -9,3 +9,4 @@ search_index/
 site-media/
 .env
 OpenEats installation guide
+venv/

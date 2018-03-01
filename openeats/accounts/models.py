@@ -12,7 +12,7 @@ class UserProfiles(models.Model):
         ('F', _('Female')),
     )
 
-    user = models.OneToOneField(User,related_name='profile', verbose_name=_('user'))
+    user = models.OneToOneField(User,related_name='profile', verbose_name=_('user'), on_delete=models.deletion.CASCADE)
     about = models.TextField(_('about'), blank=True,default="Tell everyone something about yourself")
     gender = models.CharField(_('gender'), max_length=5, choices=GENDER_CHOICES, help_text="What are ya?", null=True, default='None')
     url = models.URLField(_('url'), blank=True)

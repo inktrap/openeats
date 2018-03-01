@@ -22,7 +22,7 @@ class CourseTest(TestCase):
 
     def testCoursePage(self):
         """Test the course web page"""
-        from django.core.urlresolvers import reverse
+        from django.urls import reverse
         response = self.client.get(reverse('course_list'))
         self.assertEqual(response.status_code, 200) #got the the page
         self.assertTemplateUsed(response, 'recipe_groups/course_list.html') #check the right template was used

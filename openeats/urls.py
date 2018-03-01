@@ -1,4 +1,4 @@
-import helpers.signals  #needed to import the signal for when a user is saved their profile is created
+import openeats.helpers.signals  #needed to import the signal for when a user is saved their profile is created
 from registration.views import RegistrationView
 from relationships.listeners import attach_relationship_listener
 attach_relationship_listener()
@@ -21,7 +21,7 @@ admin.autodiscover()
 
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^accounts/logout/$', views.logout_page, name='accounts.views.logout_page'),
     url(r'^accounts/signIn/$', views.signIn_page, name='accounts.views.signIn_page'),

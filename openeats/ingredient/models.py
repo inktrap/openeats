@@ -9,7 +9,7 @@ class Ingredient(models.Model):
     quantity = models.CharField(_('quantity'), max_length=10)
     measurement = models.CharField(_('measurement (optional)'), max_length=200, blank=True, null=True)
     preparation = models.CharField(_('preparation (optional)'), max_length=100, blank=True, null=True)
-    recipe = models.ForeignKey(Recipe, verbose_name=_('recipe'), related_name='ingredients')
+    recipe = models.ForeignKey(Recipe, verbose_name=_('recipe'), related_name='ingredients', on_delete=models.deletion.CASCADE)
 
     class Meta:
         ordering = ['title']

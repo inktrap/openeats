@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 class Course(models.Model):
     title = models.CharField(_('title'), max_length=100, unique=True)
     slug = AutoSlugField(_('slug'), populate_from='title', unique=True)
-    author = models.ForeignKey(User, verbose_name=_('author'))
+    author = models.ForeignKey(User, verbose_name=_('author'), on_delete=models.deletion.CASCADE)
 
     class Meta:
         ordering = ['title']
@@ -25,7 +25,7 @@ class Course(models.Model):
 class Cuisine(models.Model):
     title = models.CharField(_('title'), max_length=100, unique=True)
     slug = AutoSlugField(_('slug'), populate_from='title', unique=True)
-    author = models.ForeignKey(User, verbose_name=_('author'))
+    author = models.ForeignKey(User, verbose_name=_('author'), on_delete=models.deletion.CASCADE)
 
     class Meta:
         ordering = ['title']

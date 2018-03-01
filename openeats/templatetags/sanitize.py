@@ -1,5 +1,6 @@
 import html5lib
-from html5lib import treebuilders, treewalkers, serializer, sanitizer
+from html5lib.filters import sanitizer
+from html5lib import treebuilders, treewalkers, serializer
 
 from django import template
 from django.template.defaultfilters import stringfilter

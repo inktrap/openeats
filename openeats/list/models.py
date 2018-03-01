@@ -9,7 +9,7 @@ from openeats.recipe.models import Recipe
 class GroceryList(models.Model):
     title = models.CharField(_("grocery list title"), max_length=250)
     slug = AutoSlugField(_('slug'), populate_from='title')
-    author = models.ForeignKey(User, verbose_name=_('user'))
+    author = models.ForeignKey(User, verbose_name=_('user'), on_delete=models.deletion.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -36,7 +36,7 @@ class GroceryList(models.Model):
 class GroceryAisle(models.Model):
     """simple table to hold aisle names for the grocery list"""
     aisle = models.CharField(_('aisle'), max_length=100)
-    author = models.ForeignKey(User, verbose_name=_('user'), blank=True, null=True)
+    author = models.ForeignKey(User, verbose_name=_('user'), blank=True, null=True, on_delete=models.deletion.CASCADE)
 
     class Meta:
         ordering = ['aisle']
@@ -46,10 +46,10 @@ class GroceryAisle(models.Model):
 
 
 class GroceryItem(models.Model):
-    list = models.ForeignKey(GroceryList, verbose_name=_('grocery list'), related_name='items')
+    list = models.ForeignKey(GroceryList, verbose_name=_('grocery list'), related_name='items', on_delete=models.deletion.CASCADE)
     item = models.CharField(_("item"), max_length=550)
     aisle = models.ForeignKey(GroceryAisle, blank=True, null=True, default=None, on_delete=models.SET_NULL)
-    
+
     class Meta:
         ordering = ['aisle', 'item']
 
@@ -58,9 +58,9 @@ class GroceryItem(models.Model):
 
 
 class GroceryShared(models.Model):
-    list = models.ForeignKey(GroceryList, verbose_name=_('grocery list'))
-    shared_by = models.ForeignKey(User, verbose_name=_('shared by'), related_name="shared_by")
-    shared_to = models.ForeignKey(User, verbose_name=_('shared to'), related_name="shared_to")
+    list = models.ForeignKey(GroceryList, verbose_name=_('grocery list'), on_delete=models.deletion.CASCADE)
+    shared_by = models.ForeignKey(User, verbose_name=_('shared by'), related_name="shared_by", on_delete=models.deletion.CASCADE)
+    shared_to = models.ForeignKey(User, verbose_name=_('shared to'), related_name="shared_to", on_delete=models.deletion.CASCADE)
 
     class Meta:
         verbose_name_plural = "shared lists"
@@ -76,8 +76,8 @@ class GroceryShared(models.Model):
 
 
 class GroceryRecipe(models.Model):
-    list = models.ForeignKey(GroceryList, verbose_name=_('grocery list'))
-    recipe = models.ForeignKey(Recipe, verbose_name=_('recipe'))
+    list = models.ForeignKey(GroceryList, verbose_name=_('grocery list'), on_delete=models.deletion.CASCADE)
+    recipe = models.ForeignKey(Recipe, verbose_name=_('recipe'), on_delete=models.deletion.CASCADE)
 
     def __unicode__(self):
         return self.recipe.title

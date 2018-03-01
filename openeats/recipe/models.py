@@ -19,10 +19,10 @@ class Recipe(models.Model):
 
     title = models.CharField(_("Recipe Title"), max_length=250)
     slug = AutoSlugField(_('slug'), populate_from='title', unique=True)
-    author = models.ForeignKey(User, verbose_name=_('user'))
+    author = models.ForeignKey(User, verbose_name=_('user'), on_delete=models.deletion.CASCADE)
     photo = models.ImageField(_('photo'), blank=True, upload_to="upload/recipe_photos")
-    course = models.ForeignKey(Course, verbose_name=_('course'))
-    cuisine = models.ForeignKey(Cuisine, verbose_name=_('cuisine'))
+    course = models.ForeignKey(Course, verbose_name=_('course'), on_delete=models.deletion.CASCADE)
+    cuisine = models.ForeignKey(Cuisine, verbose_name=_('cuisine'), on_delete=models.deletion.CASCADE)
     info = models.TextField(_('info'), help_text="enter information about the recipe")
     cook_time = models.IntegerField(_('cook time'), help_text="enter time in minutes")
     servings = models.IntegerField(_('servings'), help_text="enter total number of servings")
@@ -30,7 +30,7 @@ class Recipe(models.Model):
     shared = models.IntegerField(_('shared'), choices=SHARED_CHOCIES, default=SHARE_SHARED, help_text="share the recipe with the community or mark it private")
     tags = TaggableManager(_('tags'), help_text="separate with commas", blank=True)
     rating = RatingField(range=5)
-    related = models.OneToOneField('Recipe', verbose_name=_('related'), related_name='RecipeRelated', blank=True, null=True, help_text="relate another recipe")
+    related = models.OneToOneField('Recipe', verbose_name=_('related'), related_name='RecipeRelated', blank=True, null=True, help_text="relate another recipe", on_delete=models.deletion.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
 
@@ -49,16 +49,16 @@ class Recipe(models.Model):
 
 
 class StoredRecipe(models.Model):
-    recipe = models.ForeignKey(Recipe, verbose_name=_('recipe'))
-    user = models.ForeignKey(User, verbose_name=_('user'))
+    recipe = models.ForeignKey(Recipe, verbose_name=_('recipe'), on_delete=models.deletion.CASCADE)
+    user = models.ForeignKey(User, verbose_name=_('user'), on_delete=models.deletion.CASCADE)
 
     def __unicode__(self):
         return self.recipe.title
 
 
 class NoteRecipe(models.Model):
-    recipe = models.ForeignKey(Recipe, verbose_name=_('recipe'))
-    author = models.ForeignKey(User, verbose_name=_('author'))
+    recipe = models.ForeignKey(Recipe, verbose_name=_('recipe'), on_delete=models.deletion.CASCADE)
+    author = models.ForeignKey(User, verbose_name=_('author'), on_delete=models.deletion.CASCADE)
     text = models.TextField(_('note'))
 
     class meta:
@@ -69,8 +69,8 @@ class NoteRecipe(models.Model):
 
 
 class ReportedRecipe(models.Model):
-    recipe = models.OneToOneField(Recipe, verbose_name=_('recipe'))
-    reported_by = models.ForeignKey(User, verbose_name=_('author'))
+    recipe = models.OneToOneField(Recipe, verbose_name=_('recipe'), on_delete=models.deletion.CASCADE)
+    reported_by = models.ForeignKey(User, verbose_name=_('author'), on_delete=models.deletion.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:

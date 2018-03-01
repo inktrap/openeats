@@ -1,5 +1,5 @@
 from django_webtest import WebTest
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib.auth.models import User
 
 from openeats.recipe.models import Recipe, StoredRecipe
@@ -184,9 +184,3 @@ class recipeViewsTestCase(WebTest):
         #try having another user edit someone elses recipe
         resp = self.app.get(reverse('recipe_edit', kwargs={'user':'admin', 'slug':recipe.slug}), user='testuser', status=404)
         self.assertEqual(resp.status, '404 Not Found')
-
-
-
-
-
-
